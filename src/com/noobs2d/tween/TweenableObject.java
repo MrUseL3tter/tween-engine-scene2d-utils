@@ -1,4 +1,4 @@
-package com.noobs2d;
+package com.noobs2d.tween;
 
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenAccessor;
@@ -7,6 +7,11 @@ import aurelienribon.tweenengine.TweenManager;
 
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
+/**
+ * Holds any Actor instance and interpolates it.
+ * 
+ * @author MrUseL3tter
+ */
 public class TweenableObject<T> implements TweenAccessor<TweenableObject<Actor>> {
 
     static final int POSITION_X = 0x01;
@@ -30,17 +35,17 @@ public class TweenableObject<T> implements TweenAccessor<TweenableObject<Actor>>
     public long tweenDeltaTime = System.currentTimeMillis();
     public float tweenSpeed = 1f;
 
-    /**
-     * Register this accessor. Invoke once.
-     */
+    /** Register this accessor. Invoke once. */
     public static void register() {
 	Tween.registerAccessor(TweenableObject.class, new TweenableObject<Actor>());
     }
 
+    /** Default */
     public TweenableObject(T type) {
 	instance = type;
     }
 
+    /** Must not be able to create an empty instance. */
     protected TweenableObject() {
 
     }

@@ -3,12 +3,12 @@ package com.noobs2d.scene2d;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 
-public class ConcreteActor extends Actor {
+public class DynamicActor extends Actor {
 
-    private Registration registration = Registration.CENTER_CENTER;
+    private DynamicRegistration registration = DynamicRegistration.CENTER_CENTER;
 
-    /** @return {@link Registration} instance. */
-    public Registration getRegistration() {
+    /** @return {@link DynamicRegistration} instance. */
+    public DynamicRegistration getRegistration() {
 	return registration;
     }
 
@@ -55,8 +55,8 @@ public class ConcreteActor extends Actor {
 	return x >= boundsX && x < boundsX + getWidth() * getScaleX() && y >= boundsY && y < boundsY + getHeight() * getScaleY() ? this : null;
     }
 
-    /** @param registration {@link Registration} instance. */
-    public void setRegistration(Registration registration) {
+    /** @param registration {@link DynamicRegistration} instance. */
+    public void setRegistration(DynamicRegistration registration) {
 	this.registration = registration;
     }
 }

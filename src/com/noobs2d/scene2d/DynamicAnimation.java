@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  * 
  * @author MrUseL3tter
  */
-public class AnimationActor extends ConcreteActor {
+public class DynamicAnimation extends DynamicActor {
 
     public final TextureRegion[] keyFrames;
 
@@ -23,14 +23,14 @@ public class AnimationActor extends ConcreteActor {
     public float timeElapsed = 0;
     public float stateTime = 0;
 
-    public AnimationActor(AnimationActor clone) {
+    public DynamicAnimation(DynamicAnimation clone) {
 	keyFrames = clone.keyFrames;
 	frameDuration = clone.frameDuration;
 	frameIndex = clone.frameIndex;
 	frameCount = clone.frameCount;
     }
 
-    public AnimationActor(float frameDuration, List<TextureRegion> keyFrames) {
+    public DynamicAnimation(float frameDuration, List<TextureRegion> keyFrames) {
 	this.keyFrames = new TextureRegion[keyFrames.size()];
 	this.frameDuration = frameDuration;
 
@@ -38,13 +38,13 @@ public class AnimationActor extends ConcreteActor {
 	    this.keyFrames[index] = keyFrames.get(index);
     }
 
-    public AnimationActor(float frameDuration, TextureRegion... keyFrames) {
+    public DynamicAnimation(float frameDuration, TextureRegion... keyFrames) {
 	this.keyFrames = keyFrames;
 	this.frameDuration = frameDuration;
 	frameCount = keyFrames.length;
     }
 
-    public AnimationActor(Texture texture, int offsetX, int offsetY, int frameWidth, int frameHeight, int framesPerRow, int frameCount, float frameDuration) {
+    public DynamicAnimation(Texture texture, int offsetX, int offsetY, int frameWidth, int frameHeight, int framesPerRow, int frameCount, float frameDuration) {
 	keyFrames = new TextureRegion[frameCount];
 	this.frameDuration = frameDuration;
 	this.frameCount = frameCount;

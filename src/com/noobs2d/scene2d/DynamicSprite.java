@@ -8,12 +8,12 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
  * 
  * @author MrUseL3tter
  */
-public class SpriteActor extends ConcreteActor {
+public class DynamicSprite extends DynamicActor {
 
     private TextureRegion region;
 
     /** Default constructor */
-    public SpriteActor(TextureRegion region, float x, float y) {
+    public DynamicSprite(TextureRegion region, float x, float y) {
 	this.region = region;
 	setPosition(x, y);
 	setWidth(region.getRegionWidth());

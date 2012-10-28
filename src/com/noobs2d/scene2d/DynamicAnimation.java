@@ -28,6 +28,8 @@ public class DynamicAnimation extends DynamicActor {
 	frameDuration = clone.frameDuration;
 	frameIndex = clone.frameIndex;
 	frameCount = clone.frameCount;
+	setWidth(getKeyFrame().getRegionWidth());
+	setHeight(getKeyFrame().getRegionHeight());
     }
 
     public DynamicAnimation(float frameDuration, List<TextureRegion> keyFrames) {
@@ -36,12 +38,16 @@ public class DynamicAnimation extends DynamicActor {
 
 	for (int index = 0; index < keyFrames.size(); index++)
 	    this.keyFrames[index] = keyFrames.get(index);
+	setWidth(getKeyFrame().getRegionWidth());
+	setHeight(getKeyFrame().getRegionHeight());
     }
 
     public DynamicAnimation(float frameDuration, TextureRegion... keyFrames) {
 	this.keyFrames = keyFrames;
 	this.frameDuration = frameDuration;
 	frameCount = keyFrames.length;
+	setWidth(getKeyFrame().getRegionWidth());
+	setHeight(getKeyFrame().getRegionHeight());
     }
 
     public DynamicAnimation(Texture texture, int offsetX, int offsetY, int frameWidth, int frameHeight, int framesPerRow, int frameCount, float frameDuration) {
@@ -64,12 +70,10 @@ public class DynamicAnimation extends DynamicActor {
 	    x = offsetX;
 	    y += frameHeight;
 	}
+	setWidth(getKeyFrame().getRegionWidth());
+	setHeight(getKeyFrame().getRegionHeight());
     }
 
-    /*
-     * (non-Javadoc)
-     * @see com.badlogic.gdx.scenes.scene2d.Actor#act(float)
-     */
     @Override
     public void act(float delta) {
 	super.act(delta);
@@ -82,15 +86,13 @@ public class DynamicAnimation extends DynamicActor {
 	    else
 		frameIndex = frameIndex % keyFrames.length;
 	}
-	setWidth(getKeyFrame().getRegionWidth());
-	setHeight(getKeyFrame().getRegionHeight());
     }
 
     @Override
     public void draw(SpriteBatch batch, float parentAlpha) {
 	batch.setColor(getColor());
 	float x = getX(), y = getY();
-	float width = getKeyFrame().getRegionWidth(), height = getKeyFrame().getRegionHeight();
+	float width = getWidth(), height = getHeight();
 	switch (getRegistration()) {
 	    case BOTTOM_CENTER:
 		setOrigin(width / 2, 0);

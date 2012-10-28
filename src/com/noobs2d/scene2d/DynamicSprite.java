@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
- * Drawable actor with a bounding box equal to its visible region.
+ * Drawable actor with a bounding box equal to its rectangular visible region.
  * 
  * @author MrUseL3tter
  */
@@ -12,7 +12,14 @@ public class DynamicSprite extends DynamicActor {
 
     private TextureRegion region;
 
-    /** Default constructor */
+    public DynamicSprite(DynamicSprite source, float x, float y) {
+	region = source.region;
+	setPosition(x, y);
+	setWidth(source.getWidth());
+	setHeight(source.getHeight());
+	setOrigin(region.getRegionWidth() / 2, region.getRegionHeight() / 2);
+    }
+
     public DynamicSprite(TextureRegion region, float x, float y) {
 	this.region = region;
 	setPosition(x, y);

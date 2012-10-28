@@ -1,5 +1,6 @@
 package com.noobs2d.scene2d;
 
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 
@@ -12,46 +13,45 @@ public class DynamicActor extends Actor {
 	return registration;
     }
 
-    /*
-     * (non-Javadoc)
-     * @see com.badlogic.gdx.scenes.scene2d.Actor#hit(float, float, boolean)
-     */
+    public Actor hit(Actor actor) {
+	return new Rectangle(actor.getX(), actor.getY(), actor.getWidth(), actor.getHeight()).overlaps(new Rectangle(getX(), getY(), getWidth(), getHeight())) ? this : null;
+    }
+
     @Override
     public Actor hit(float x, float y, boolean touchable) {
 	if (touchable && getTouchable() != Touchable.enabled)
 	    return null;
-	float boundsX = getX(), boundsY = getY();
+	float boundsX = 0, boundsY = 0;
 	switch (getRegistration()) {
 	    case BOTTOM_LEFT:
 		// default
 		break;
 	    case BOTTOM_CENTER:
-		boundsX = getX() - getWidth() * getScaleX() / 2;
+		boundsX = 0 - getWidth() * getScaleX() / 2;
 		break;
 	    case BOTTOM_RIGHT:
-		boundsX = getX() - getWidth() * getScaleX();
+		boundsX = 0 - getWidth() * getScaleX();
 		break;
 	    case CENTER_CENTER:
-		boundsX = getX() - getWidth() * getScaleX() / 2;
-		boundsY = getY() - getHeight() * getScaleY() / 2;
+		boundsX = 0 - getWidth() * getScaleX() / 2;
+		boundsY = 0 - getHeight() * getScaleY() / 2;
 		break;
 	    case LEFT_CENTER:
-		boundsX = getX() - getWidth() * getScaleX();
-		boundsY = getY() - getHeight() * getScaleY() / 2;
+		boundsX = 0 - getWidth() * getScaleX();
+		boundsY = 0 - getHeight() * getScaleY() / 2;
 		break;
 	    case TOP_CENTER:
-		boundsX = getX() - getWidth() * getScaleX() / 2;
-		boundsY = getY() - getHeight() * getScaleY();
+		boundsX = 0 - getWidth() * getScaleX() / 2;
+		boundsY = 0 - getHeight() * getScaleY();
 		break;
 	    case TOP_LEFT:
-		boundsX = getX() - getWidth() * getScaleX();
-		boundsY = getY() - getHeight() * getScaleY();
+		boundsX = 0 - getWidth() * getScaleX();
+		boundsY = 0 - getHeight() * getScaleY();
 		break;
 	    case TOP_RIGHT:
 		boundsY = getY() - getHeight() * getScaleY();
 		break;
 	}
-	System.out.println(getX() + "\t" + getY() + "\t" + getWidth() * getScaleX() + "\t" + getHeight() * getScaleY());
 	return x >= boundsX && x < boundsX + getWidth() * getScaleX() && y >= boundsY && y < boundsY + getHeight() * getScaleY() ? this : null;
     }
 
